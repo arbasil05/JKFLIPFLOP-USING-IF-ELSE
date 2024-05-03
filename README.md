@@ -1,16 +1,16 @@
 # JKFLIPFLOP-USING-IF-ELSE
 
-**AIM:** 
+# AIM:
 
 To implement  JK flipflop using verilog and validating their functionality using their functional tables
 
-**SOFTWARE REQUIRED:**
+# SOFTWARE REQUIRED:
 
 Quartus prime
 
-**THEORY**
+# THEORY:
 
-**JK Flip-Flop**
+# JK Flip-Flop
 
 JK flip-flop is the modified version of SR flip-flop. It operates with only positive clock transitions or negative clock transitions. The circuit diagram of JK flip-flop is shown in the following figure.
 
@@ -32,17 +32,74 @@ By using three variable K-Map, we can get the simplified expression for next sta
 
 The maximum possible groupings of adjacent ones are already shown in the figure. Therefore, the simplified expression for next state Qt+1t+1 is Q(t+1)=JQ(t)′+K′Q(t)Q(t+1)=JQ(t)′+K′Q(t)
 
-**Procedure**
+# Procedure :
 
-/* write all the steps invloved */
+1. Define Module: Define a Verilog module for the JK flip-flop with inputs (J, K, CLK) and outputs (Q, Q_bar).
+2. Declare Inputs and Outputs: Declare input and output ports for the module.
+3. Implement Flip-Flop Logic: Write Verilog code to implement the JK flip-flop logic based on its functional table. Use a synchronous always @(posedge CLK) block to trigger the flip-flop on the positive edge of  
+   the clock signal.
+4. Simulate Using Testbench: Write a Verilog testbench to simulate the behavior of the JK flip-flop under different input conditions.
+5. Apply Input Stimuli: In the testbench, apply various combinations of input stimuli (J, K, CLK) to cover all possible input states.
+6. Verify Output Behavior: Verify that the output behavior of the JK flip-flop matches the expected behavior defined by its functional table.
+7. Check for Race Conditions: Ensure that there are no race conditions or undefined states in the design by analyzing the timing and sequence of input changes.
 
-**PROGRAM**
+ 
 
-/* Program for flipflops and verify its truth table in quartus using Verilog programming. Developed by: RegisterNumber:
-*/
+ 
 
-**RTL LOGIC FOR FLIPFLOPS**
 
-**TIMING DIGRAMS FOR FLIP FLOPS**
 
-**RESULTS**
+
+
+
+# PROGRAM :
+```
+Program for flipflops and verify its truth table in quartus using Verilog programming.
+Developed by: Abdur Rahman Basil A H
+RegisterNumber: 212223040002
+```
+```
+module Exp_07(q,qb,j,k,clock,reset);
+	input j,k,clock,reset;
+	output reg q,qb;
+always @(posedge (clock))
+	begin
+		if(!reset)
+			begin
+				q <= q;
+				qb <= qb;
+			end
+		else
+			begin
+				if(j == 0 && k == 0)
+					begin
+					q <= q;
+					qb <= qb;
+					end
+				else if (j != k)
+					begin
+					q <= j;
+					qb <= k;
+					end
+				else if (j ==1 && k == 1)
+					begin 
+					q <= ~q;
+					qb <= ~qb;
+					end
+			end
+	end
+endmodule
+
+```
+
+# RTL LOGIC FOR FLIPFLOPS:
+![image](https://github.com/arbasil05/JKFLIPFLOP-USING-IF-ELSE/assets/144218037/a59a077d-5943-40fa-a5d7-701a17af4944)
+
+
+# TIMING DIGRAMS FOR FLIP FLOPS:
+![image](https://github.com/arbasil05/JKFLIPFLOP-USING-IF-ELSE/assets/144218037/2c86f81b-84e1-4645-b928-f6ae45d9b20c)
+
+
+# RESULTS:
+Thus a program to implement a JK flipflop using verilog and validating their functionality using their functional tables is successfully completed.
+
